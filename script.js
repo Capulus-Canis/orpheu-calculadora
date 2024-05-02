@@ -1,23 +1,23 @@
 var input = document.querySelector("#display");
 var operador = "";
-var parar = false;
+var stop = false;
 
 function limpar() {
     input.value = "";
     document.querySelector("#history").innerHTML = "";
     operador = "";
-    parar = false;
+    stop = false;
 }
 
 function add_numero(string) {
-    if (!parar) {
+    if (!stop) {
         if (string === '.' && input.value.indexOf(".") === -1 || string !== '.') {
             input.value += string;
         }
     } else {
         if (string === '.' && input.value.indexOf(".") === -1 || string !== '.') {
             input.value = "";
-            parar = false;
+            stop = false;
             document.querySelector("#history").innerHTML = "";
             operador = "";
             input.value += string;
@@ -36,12 +36,12 @@ function add_operador(op) {
         total();
         input.value += op;
         operador = op;
-        parar = false;
+        stop = false;
     }
 }
 
 function total() {
-    if (!parar) {
+    if (!stop) {
         let numeros = input.value.split(operador);
         if (numeros[1] === "") {
             input.value += '0';
@@ -68,7 +68,7 @@ function total() {
                 calcularRaizQuadrada();
                 break;
         }
-        parar = true;
+        stop = true;
     }
 }
 
